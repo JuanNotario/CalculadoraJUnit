@@ -3,23 +3,35 @@ package calculadora;
 import static org.junit.Assert.*;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CalculadoraTest {
 	
-	Calculadora calcu;
-
+	static Calculadora calcu;
+	
+	@BeforeClass
+	public static void preCalcu() {
+		calcu = new Calculadora(20, 30);
+		System.out.println("PREPARANDO PRUEBAS");
+	}
+	
+	@AfterClass
+	public static void postCalcu() {
+		System.out.println("PRUEBAS FINALIZADAS");
+		calcu = null;
+	}
+	
 	@Before
 	public void creaCalculadora() {
-		calcu = new Calculadora(20, 30);
-		//System.out.println("Inicio prueba");
+		System.out.println("Inicio prueba");
 	}
 	
 	@After
 	public void borraCalculadora() {
-		calcu = null;
-		//System.out.println("Fin Prueba");
+		System.out.println("Fin Prueba");
 	}
 	
 	public void testSuma() {
